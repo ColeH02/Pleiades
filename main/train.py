@@ -57,7 +57,7 @@ def main():
 	zodiac_symbols = 12;
 	pleiades_star_count = 800;
 
-	ALQ = (abs(math.sin(((confidence * class_val * universe_freq) / (pleiades_location / zodiac_symbols)) * pleiades_star_count))) * 100;
+	ALQ = (abs(math.sin((((math.pow(confidence, class_val)) * pleiades_location) / (universe_freq / zodiac_symbols)) * pleiades_star_count))) * 100;
 	print('ALQ:', ALQ)
 
 
