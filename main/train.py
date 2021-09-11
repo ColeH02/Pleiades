@@ -4,7 +4,7 @@ import tangram
 def main():
 
 	# Get the path to the .tangram file.
-	model_path = os.path.join(os.path.dirname(__file__), 'hackdata.tangram')
+	model_path = os.path.join(os.path.dirname(__file__), 'hackdata2.tangram')
 	# Load the model from the path.
 	model = tangram.Model.from_path(model_path)
 
@@ -13,8 +13,8 @@ def main():
 	# from a database or user input.
 	input = {
 		'sex': 'female',
-		'zodiac': 'aquarius',
-		'sexsex5': 'exclusively female'
+		'zodiac': 'cancer',
+		'sexsex5': 'exclusively male'
 	}
 
 	# Make the prediction!
