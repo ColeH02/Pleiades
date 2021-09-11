@@ -21,7 +21,9 @@ def main():
 	output = model.predict(input)
 
 	# Print the output.
-	print('Output:', output)
+	print('Full Output:', output)
+	print('Output:', getattr(output, "class_name"))
+
 
 if __name__ == "__main__":
 	main()
