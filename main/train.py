@@ -36,13 +36,13 @@ def main():
 	confidence = getattr(output, 'probability')
 	print('classification:', classification)
 
-	if(classification == 'not at all'):
+	if classification == 'not at all':
 		class_val = 0.1
-	elif (classification == '2-3 times a month'):
+	elif classification == '2-3 times a month':
 		class_val = 0.25
-	elif (classification == 'weekly'):
+	elif classification == 'weekly':
 		class_val = 0.5
-	elif (classification == '2-3 per week'):
+	elif classification == '2-3 per week':
 		class_val = 0.75
 
 	print('confidence:', confidence)
