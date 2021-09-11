@@ -1,17 +1,27 @@
-import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time
+from skyfield.api import Topos, Loader, EarthSatellite
+from skyfield.positionlib import position_of_radec
+from skyfield.api import load, wgs84
+
+ts = load.timescale()
+t = ts.now()
+
+earth = 399  # NAIF code for the Earth center of mass
+ra_hours = 3.79
+dec_degrees = 24.1167
 
 
-URL = "https://stellarium-web.org/skysource/Pleiades?fov=0.00027778&date=2021-09-11T05:58:58Z&lat=40.97&lng=-76.91&elev=0"
-driver = webdriver.Firefox()
-driver.get(URL)
-time.sleep(5)
+# returns the subpoint
+def get_pleiades_pos(cent, hours, degrees):
+    pleiades = position_of_radec(hours, degrees, t=t, center=cent)
+    subpoint = wgs84.subpoint(pleiades)
+    return subpoint
 
-html = driver.page_source
-soup = BeautifulSoup(html, "html.parser")
 
-soup.findAll("div", {"class": "radecVal"})
-print(soup.text)
+# returns latitude
+def get_pleiades_lat(subpoint):
+    return subpoint.latitude
+
+
+# returns longitude
+def get_pleiades_long(subpoint):
+    return subpoint.longitude
