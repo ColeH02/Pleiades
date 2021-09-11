@@ -14,7 +14,7 @@ def main():
 	input = {
 		'sex': 'female',
 		'zodiac': 'cancer',
-		'sexsex5': 'exclusively male'
+		'sexsex5': 'exclusively female'
 	}
 
 	# Make the prediction!
@@ -22,7 +22,10 @@ def main():
 
 	# Print the output.
 	print('Full Output:', output)
-	print('Output:', getattr(output, "class_name"))
+	classification = getattr(output, 'class_name')
+	probability = getattr(output, 'probability')
+	print('classification:', classification)
+	print('probability:', probability)
 
 
 if __name__ == "__main__":
