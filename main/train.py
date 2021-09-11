@@ -7,7 +7,6 @@ from skyfield.api import load, wgs84
 
 from PleiadesTracker import get_pleiades_pos, final_val, point_arr, point_to_str, earth, ra_hours, dec_degrees
 
-
 def main():
 
 	# Get the path to the .tangram file.
@@ -19,12 +18,12 @@ def main():
 	# Here the data is just hard-coded, but in your application you will probably get this
 	# from a database or user input.
 	input = {
-		'sex': 'female',
+		'sex': 'male',
 		'degree': 'high school',
-		'zodiac': 'cancer',
-		'sexorient': 'exclusively male',
+		'zodiac': 'pisces',
+		'sexorient': 'exclusively female',
 		'sociability': 'neither agree nor disagree',
-		'acqmark': '2-5'
+		'acqmark': '1'
 	}
 
 	# Make the prediction!
@@ -48,16 +47,17 @@ def main():
 	print('confidence:', confidence)
 	print('class_val:', class_val)
 
-	point = get_pleiades_pos(earth, ra_hours, dec_degrees)
-	print(point)
-	pleiades_location = final_val(point_arr(point_to_str(point)))
-	print('pleiades_location:', pleiades_location)
-
+	# some highly important constants
 	universe_freq = 0.432;
 	zodiac_symbols = 12;
 	pleiades_star_count = 800;
 
-	ALQ = (abs(math.sin((((math.pow(confidence, class_val)) * pleiades_location) / (universe_freq / zodiac_symbols)) * pleiades_star_count))) * 100;
+	point = get_pleiades_pos(earth, ra_hours, dec_degrees)
+	print(point)
+	pleiades_location = (final_val(point_arr(point_to_str(point))))
+	print('pleiades_location:', pleiades_location)
+
+	ALQ = (abs(math.sin((math.pow(class_val, confidence) + pleiades_location / (universe_freq / zodiac_symbols)) * pleiades_star_count))) * 100
 	print('ALQ:', ALQ)
 
 
