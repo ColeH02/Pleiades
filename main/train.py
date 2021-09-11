@@ -5,7 +5,7 @@ from skyfield.api import Topos, Loader, EarthSatellite
 from skyfield.positionlib import position_of_radec
 from skyfield.api import load, wgs84
 
-from main.PleiadesTracker import get_pleiades_pos, final_val, point_arr, point_to_str, earth, ra_hours, dec_degrees
+from PleiadesTracker import get_pleiades_pos, final_val, point_arr, point_to_str, earth, ra_hours, dec_degrees
 
 
 def main():
