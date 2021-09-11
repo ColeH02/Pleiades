@@ -1,3 +1,4 @@
 flask
 tangram
 skyfield
+pip>=20.3
