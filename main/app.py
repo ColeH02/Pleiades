@@ -10,11 +10,32 @@ def local_website():
     return render_template('index.html')
 
 
-@app.route('/success/<name>')
-def success(name):
-    print(f'welcome {name}')
-    return render_template('success.html')
-
+@app.route('/success/<zodiac>')
+def success(zodiac):
+    if zodiac == 'Sagittarius':
+        return render_template('sagittarius.html')
+    elif zodiac == 'Capricorn':
+        return render_template('capricorn.html')
+    elif zodiac == 'Aquarius':
+        return render_template('aquarius.html')
+    elif zodiac == 'Pisces':
+        return render_template('pisces.html')
+    elif zodiac == 'Aries':
+        return render_template('aries.html')
+    elif zodiac == 'Taurus':
+        return render_template('taurus.html')
+    elif zodiac == 'Gemini':
+        return render_template('gemini.html')
+    elif zodiac == 'Cancer':
+        return render_template('cancer.html')
+    elif zodiac == 'Leo':
+        return render_template('leo.html')
+    elif zodiac == 'Virgo':
+        return render_template('virgo.html')
+    elif zodiac == 'Libra':
+        return render_template('libra.html')
+    elif zodiac == 'Scorpio':
+        return render_template('scorpio.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -30,7 +51,7 @@ def login():
 
         ALQ = run_through_model(ALQ_dict)
 
-        return redirect(url_for('success', name=user['contact_name']))
+        return redirect(url_for('success', zodiac=user['zodiac']))
     else:
         return render_template('login.html')
 
