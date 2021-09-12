@@ -12,7 +12,8 @@ def local_website():
 
 @app.route('/success/<name>')
 def success(name):
-    return f'welcome {name}'
+    print(f'welcome {name}')
+    return render_template('success.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -29,7 +30,7 @@ def login():
 
         ALQ = run_through_model(ALQ_dict)
 
-        return redirect(url_for('success', name=ALQ))
+        return redirect(url_for('success', name=user['contact_name']))
     else:
         return render_template('login.html')
 
