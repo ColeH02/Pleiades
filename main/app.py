@@ -68,5 +68,11 @@ def login():
         return render_template('login.html')
 
 
+@app.route('/match', methods=['POST', 'GET'])
+def match():
+    if request.method == 'POST':
+        user = request.form
+    return redirect(url_for('match', name=user))
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
