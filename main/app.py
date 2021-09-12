@@ -59,7 +59,7 @@ def login():
 
         df = add_to_database(user, zodiac, ALQ)
         list_of_ALQs = df["ALQ"].tolist()
-        match_ALQ = closest(list_of_ALQs, ALQ)
+        match_ALQ = closest(list_of_ALQs, ALQ, df)
         index_ALQ = list_of_ALQs.index(match_ALQ)
         match_name = df.iloc[index_ALQ]["Name"]
         phone_num = df.iloc[index_ALQ]["Phone"]

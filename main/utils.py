@@ -17,6 +17,24 @@ def add_to_database(user, zodiac, ALQ):
     return df
 
 
-def closest(lst, K):
+def closest(lst, K, df):
     lst = lst[:-1]
-    return lst[min(range(len(lst)), key=lambda i: abs(lst[i] - K))]
+    request_sex = df["sexorient"].iloc[-1]
+    if request_sex == "exclusively male":
+        prefer_sex = "male"
+    elif request_sex == "exclusively female":
+        prefer_sex = "female"
+    else:
+        prefer_sex = "both"
+
+    done = False
+    if prefer_sex == "both":
+        done = True
+    while done:
+        suggest_index = min(range(len(lst)), key=lambda i: abs(lst[i] - K))
+        suggest_sex = df["sex"].iloc[suggest_index]
+        if suggest_sex == prefer_sex:
+            done = True
+        else:
+            lst.pop(suggest_sex)
+    return lst[suggest_sex]
