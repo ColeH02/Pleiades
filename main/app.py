@@ -38,6 +38,7 @@ def success(zodiac):
     elif zodiac == 'Scorpio':
         return render_template('scorpio.html')
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -52,6 +53,7 @@ def login():
 
         ALQ = run_through_model(ALQ_dict)
         #Update database and get dataframe of current database
+
         df = add_to_database(user, zodiac, ALQ)
         list_of_ALQs = df["ALQ"].tolist()
         match_ALQ = closest(list_of_ALQs, ALQ)
@@ -63,7 +65,7 @@ def login():
 
         list_to_return = [match_name, phone_num, insta_hand, zodiac_match]
 
-        return redirect(url_for('success', zodiac = zodiac))
+        return redirect(url_for('success', zodiac=zodiac))
     else:
         return render_template('login.html')
 
