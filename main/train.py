@@ -30,11 +30,8 @@ def main():
 	# Make the prediction!
 	output = model.predict(input)
 
-	# Print the output.
-	print('Full Output:', output)
 	classification = getattr(output, 'class_name')
 	confidence = getattr(output, 'probability')
-	print('classification:', classification)
 
 	if classification == 'not at all':
 		class_val = 0.1
@@ -45,20 +42,14 @@ def main():
 	elif classification == '2-3 per week':
 		class_val = 0.75
 
-	print('confidence:', confidence)
-	print('class_val:', class_val)
-
 	point = get_pleiades_pos(earth, ra_hours, dec_degrees)
-	print(point)
 	pleiades_location = final_val(point_arr(point_to_str(point)))
-	print('pleiades_location:', pleiades_location)
 
 	universe_freq = 0.432;
 	zodiac_symbols = 12;
 	pleiades_star_count = 800;
 
 	ALQ = (abs(math.sin((((math.pow(confidence, class_val)) * pleiades_location) / (universe_freq / zodiac_symbols)) * pleiades_star_count))) * 100;
-	print('ALQ:', ALQ)
 
 def run_through_model(input):
 	# Get the path to the .tangram file.
@@ -82,20 +73,14 @@ def run_through_model(input):
 	elif classification == '2-3 per week':
 		class_val = 0.75
 
-	print('confidence:', confidence)
-	print('class_val:', class_val)
-
 	point = get_pleiades_pos(earth, ra_hours, dec_degrees)
-	print(point)
 	pleiades_location = final_val(point_arr(point_to_str(point)))
-	print('pleiades_location:', pleiades_location)
 
 	universe_freq = 0.432
 	zodiac_symbols = 12
 	pleiades_star_count = 800
 	ALQ = (abs(math.sin((((math.pow(confidence, class_val)) * pleiades_location) / (
 			universe_freq / zodiac_symbols)) * pleiades_star_count))) * 100
-	print('ALQ:', ALQ)
 	return ALQ
 
 

@@ -36,5 +36,5 @@ def closest(lst, K, df):
         if suggest_sex == prefer_sex:
             done = False
         else:
-            lst.pop(suggest_sex)
+            lst.pop(suggest_index)
     return lst[suggest_index]

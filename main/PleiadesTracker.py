@@ -44,5 +44,3 @@ def final_val(a):
     return a[0] * a[1]
 
 point = get_pleiades_pos(earth, ra_hours, dec_degrees)
-print(point)
-print(final_val(point_arr(point_to_str(point))))
