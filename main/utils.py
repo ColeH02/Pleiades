@@ -27,14 +27,14 @@ def closest(lst, K, df):
     else:
         prefer_sex = "both"
 
-    done = False
-    if prefer_sex == "both":
-        done = True
+    done = True
     while done:
         suggest_index = min(range(len(lst)), key=lambda i: abs(lst[i] - K))
         suggest_sex = df["sex"].iloc[suggest_index]
+        if prefer_sex == "both":
+            done = False
         if suggest_sex == prefer_sex:
-            done = True
+            done = False
         else:
             lst.pop(suggest_sex)
-    return lst[suggest_sex]
+    return lst[suggest_index]

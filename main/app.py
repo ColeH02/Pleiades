@@ -2,7 +2,6 @@ from flask import Flask, render_template, Response, request, redirect, url_for
 from train import run_through_model
 from zodiacSign import zodiac_sign
 from utils import add_to_database, closest
-from django.shortcuts import render
 
 app = Flask(__name__)
 global match_list
