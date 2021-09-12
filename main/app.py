@@ -51,7 +51,9 @@ def login():
 
         ALQ = run_through_model(ALQ_dict)
 
-        return redirect(url_for('success', zodiac=user['zodiac']))
+        USERS_Info = {}
+
+        return redirect(url_for('success', zodiac = zodiac))
     else:
         return render_template('login.html')
 
