@@ -1,3 +1,4 @@
+import pandas as pd
 
 def add_to_database(user, zodiac, ALQ):
     #Get current database
