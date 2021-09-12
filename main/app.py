@@ -73,7 +73,7 @@ def login():
 @app.route('/match', methods=['POST', 'GET'])
 def match():
     if request.method == 'POST':
-        return redirect(url_for('match'))
+        return render_template('match.html')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
