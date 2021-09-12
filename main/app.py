@@ -1,6 +1,8 @@
 from flask import Flask, render_template, Response, request, redirect, url_for
 from train import run_through_model
 from zodiacSign import zodiac_sign
+import pandas as pd
+from utils import add_to_database, closest
 
 app = Flask(__name__)
 
@@ -50,6 +52,17 @@ def login():
             ALQ_dict[key] = user[key]
 
         ALQ = run_through_model(ALQ_dict)
+        #Update database and get dataframe of current database
+        df = add_to_database(user, zodiac, ALQ)
+        list_of_ALQs = df["ALQ"].tolist()
+        match_ALQ = closest(list_of_ALQs, ALQ)
+        index_ALQ = list_of_ALQs.index(match_ALQ)
+        match_name = df.at[index_ALQ, "Name"]
+        phone_num = df.at[index_ALQ, "Phone"]
+        insta_hand = df.at[index_ALQ, "Insta"]
+        zodiac_match = df.at[index_ALQ, "zodiac"]
+
+        list_to_return = [match_name, phone_num, insta_hand, zodiac_match]
 
         return redirect(url_for('success', zodiac = zodiac))
     else:

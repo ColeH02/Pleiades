@@ -1,5 +1,4 @@
 flask
 tangram
 skyfield
-regex
-PyInquirer
+pandas
