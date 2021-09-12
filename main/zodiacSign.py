@@ -1,5 +1,6 @@
 def zodiac_sign(month, day):
 
+    sign = ""
     if month == 12:
         if day < 21:
             sign = 'Sagittarius'
