@@ -1,4 +1,6 @@
 from flask import Flask, render_template, Response, request, redirect, url_for
+from train import run_through_model
+from zodiacSign import zodiac_sign
 
 app = Flask(__name__)
 
@@ -17,7 +19,17 @@ def success(name):
 def login():
     if request.method == 'POST':
         user = request.form
-        return redirect(url_for('success', name=user))
+
+        zodiac = zodiac_sign(user['month'], user['day'])
+
+        ALQ_dict = {'zodiac': zodiac}
+        keys = ['sex', 'sexorient', 'degree', 'sociability', 'acqmark']
+        for key in keys:
+            ALQ_dict[key] = user[key]
+
+        ALQ = run_through_model(ALQ_dict)
+
+        return redirect(url_for('success', name=ALQ))
     else:
         return render_template('login.html')
 

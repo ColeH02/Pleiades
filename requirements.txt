@@ -1,4 +1,5 @@
-pip>=20.3
 flask
 tangram
 skyfield
+regex
+PyInquirer
