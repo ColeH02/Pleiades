@@ -76,7 +76,11 @@ def login():
 @app.route('/match', methods=['POST', 'GET'])
 def match():
     if request.method == 'POST':
-        return render_template('match.html', output= match_list)
+        Name = match_list[0]
+        Phone = match_list[1]
+        Insta = match_list[2]
+        zodiac = match_list[3]
+        return render_template('match.html', output= Name, output2 = Phone, output3 = Insta, output4 = zodiac)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
