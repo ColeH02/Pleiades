@@ -2,9 +2,10 @@ from flask import Flask, render_template, Response, request, redirect, url_for
 from train import run_through_model
 from zodiacSign import zodiac_sign
 from utils import add_to_database, closest
+from django.shortcuts import render
 
 app = Flask(__name__)
-
+global match_list
 
 @app.route('/')
 def local_website():
@@ -41,6 +42,8 @@ def success(zodiac):
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    global match_list
+
     if request.method == 'POST':
         user = request.form
 
@@ -58,12 +61,12 @@ def login():
         list_of_ALQs = df["ALQ"].tolist()
         match_ALQ = closest(list_of_ALQs, ALQ)
         index_ALQ = list_of_ALQs.index(match_ALQ)
-        match_name = df.at[index_ALQ, "Name"]
-        phone_num = df.at[index_ALQ, "Phone"]
-        insta_hand = df.at[index_ALQ, "Insta"]
-        zodiac_match = df.at[index_ALQ, "zodiac"]
+        match_name = df.iloc[index_ALQ]["Name"]
+        phone_num = df.iloc[index_ALQ]["Phone"]
+        insta_hand = df.iloc[index_ALQ]["Insta"]
+        zodiac_match = df.iloc[index_ALQ]["zodiac"]
 
-        list_to_return = [match_name, phone_num, insta_hand, zodiac_match]
+        match_list = [match_name, phone_num, insta_hand, zodiac_match]
 
         return redirect(url_for('success', zodiac=zodiac))
     else:
@@ -73,7 +76,7 @@ def login():
 @app.route('/match', methods=['POST', 'GET'])
 def match():
     if request.method == 'POST':
-        return render_template('match.html')
+        return render_template('match.html', output= match_list)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
