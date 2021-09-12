@@ -1,7 +1,6 @@
 from flask import Flask, render_template, Response, request, redirect, url_for
 from train import run_through_model
 from zodiacSign import zodiac_sign
-import pandas as pd
 from utils import add_to_database, closest
 
 app = Flask(__name__)

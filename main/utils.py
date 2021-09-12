@@ -4,7 +4,7 @@ def add_to_database(user, zodiac, ALQ):
     #Get current database
     df = pd.read_csv(r'../resource/pleiadesUserDatabase.csv')
     column_list = ["Name", "Phone", "Insta", "zodiac", "sex", "sexorient", "degree", "sociability", "acqmark"]
-    new_df = pd.Dataframe(columns=column_list)
+    new_df = pd.DataFrame(columns=column_list)
     new_df["Name"] = [user["contact_name"]]
     new_df["Phone"] = [user["phone_number"]]
     new_df["Insta"] = [user["instagram"]]
