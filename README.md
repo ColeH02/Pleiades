@@ -11,6 +11,9 @@ This is a dating application. There are many like it, but this one is ours, and 
 ## Whats next?
 Pleiades is a wonderful concept, although it has its flaws. The GSS dataset, while super cool, is probably not the best for determining someone's love life, and we did not have ample time to vet it properly. Also our application lacks many features we had planned but couldn't achieve, such as a proper database for ~real~ users and not just accounts we created ourselves.
 
+
+
+### Setup:
 To explore, clone repositiory.\
 Go into /main and open app.py.\
 Run the program, and click on link in terminal to go to localhost port in browser\
